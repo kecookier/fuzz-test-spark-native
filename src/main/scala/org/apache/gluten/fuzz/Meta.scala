@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package cn.wangz.spark.fuzz
+package org.apache.gluten.fuzz
 
-import cn.wangz.spark.fuzz.Utils._
+import Utils._
 import org.apache.spark.sql.types._
 
 object Meta {

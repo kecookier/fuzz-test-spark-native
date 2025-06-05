@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package cn.wangz.spark.fuzz
+package org.apache.gluten.fuzz
 
 import scala.util.Random
 

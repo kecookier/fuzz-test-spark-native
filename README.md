@@ -14,3 +14,8 @@ You can see the fuzz test reports of each native engine in [issues list](https:/
 **Note**: The report may be truncated due to issue comment length limit. You can download the complete report file in the action's artifacts.
 
 **Bugs found by fuzz testing**: https://github.com/wForget/fuzz-test-spark-native/issues/7
+
+
+usage:
+scala -cp target/classes:$(mvn dependency:build-classpath -Dmdep.outputFile=/dev/stdout -q) org.apache.gluten.fuzz.SparkFunctionAnalyzer
+scala -cp target/classes:$(mvn dependency:build-classpath -Dmdep.outputFile=/dev/stdout -q) org.apache.gluten.fuzz.SparkFunctionAnalyzer --detail

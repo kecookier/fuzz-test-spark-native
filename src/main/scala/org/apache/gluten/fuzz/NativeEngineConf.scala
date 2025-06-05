@@ -1,6 +1,6 @@
-package cn.wangz.spark.fuzz
+package org.apache.gluten.fuzz
 
-import cn.wangz.spark.fuzz.NativeEngineType.NativeEngineType
+import NativeEngineType.NativeEngineType
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{RuntimeConfig, SparkSession}
 
