@@ -1,493 +1,457 @@
-Spark SQL 内置函数总数: 345
-==================================================
-Func: !, 1, (Expression)
-Func: %, 2, (Expression, Expression)
-Func: &, 2, (Expression, Expression)
-Func: *, 2, (Expression, Expression)
-Func: +, 2, (Expression, Expression)
-Func: -, 2, (Expression, Expression)
-Func: /, 2, (Expression, Expression)
-Func: <, 2, (Expression, Expression)
-Func: <=, 2, (Expression, Expression)
-Func: <=>, 2, (Expression, Expression)
-Func: =, 2, (Expression, Expression)
-Func: ==, 2, (Expression, Expression)
-Func: >, 2, (Expression, Expression)
-Func: >=, 2, (Expression, Expression)
-Func: ^, 2, (Expression, Expression)
-Func: abs, 1, (Expression)
-Func: acos, 1, (Expression)
-Func: acosh, 1, (Expression)
-Func: add_months, 2, (Expression, Expression)
-Func: add_months, 3, (Expression, Expression, boolean)
-Func: aggregate, 4, (Expression, Expression, Expression, Expression)
-Func: aggregate, 3, (Expression, Expression, Expression)
-Func: and, 2, (Expression, Expression)
-Func: any, 1, (Expression)
-Func: approx_count_distinct, 1, (Expression)
-Func: approx_count_distinct, 4, (Expression, double, int, int)
-Func: approx_count_distinct, 2, (Expression, Expression)
-Func: approx_percentile, 3, (Expression, Expression, Expression)
-Func: approx_percentile, 2, (Expression, Expression)
-Func: approx_percentile, 5, (Expression, Expression, Expression, int, int)
-Func: array, varArgs
-Func: array_contains, 2, (Expression, Expression)
-Func: array_distinct, 1, (Expression)
-Func: array_except, 2, (Expression, Expression)
-Func: array_intersect, 2, (Expression, Expression)
-Func: array_join, 3, (Expression, Expression, Option)
-Func: array_join, 3, (Expression, Expression, Expression)
-Func: array_join, 2, (Expression, Expression)
-Func: array_max, 1, (Expression)
-Func: array_min, 1, (Expression)
-Func: array_position, 2, (Expression, Expression)
-Func: array_remove, 2, (Expression, Expression)
-Func: array_repeat, 2, (Expression, Expression)
-Func: array_sort, 2, (Expression, Expression)
-Func: array_sort, 1, (Expression)
-Func: array_union, 2, (Expression, Expression)
-Func: arrays_overlap, 2, (Expression, Expression)
-Func: arrays_zip, varArgs
-Func: ascii, 1, (Expression)
-Func: asin, 1, (Expression)
-Func: asinh, 1, (Expression)
-Func: assert_true, 1, (Expression)
-Func: atan, 1, (Expression)
-Func: atan2, 2, (Expression, Expression)
-Func: atanh, 1, (Expression)
-Func: avg, 1, (Expression)
-Func: avg, 2, (Expression, boolean)
-Func: base64, 1, (Expression)
-Func: bigint, 4, (Expression, DataType, Option, boolean)
-Func: bigint, 3, (Expression, DataType, Option)
-Func: bin, 1, (Expression)
-Func: binary, 4, (Expression, DataType, Option, boolean)
-Func: binary, 3, (Expression, DataType, Option)
-Func: bit_and, 1, (Expression)
-Func: bit_count, 1, (Expression)
-Func: bit_length, 1, (Expression)
-Func: bit_or, 1, (Expression)
-Func: bit_xor, 1, (Expression)
-Func: bool_and, 1, (Expression)
-Func: bool_or, 1, (Expression)
-Func: boolean, 4, (Expression, DataType, Option, boolean)
-Func: boolean, 3, (Expression, DataType, Option)
-Func: bround, 2, (Expression, Expression)
-Func: bround, 1, (Expression)
-Func: cardinality, 1, (Expression)
-Func: cardinality, 2, (Expression, boolean)
-Func: cast, 4, (Expression, DataType, Option, boolean)
-Func: cast, 3, (Expression, DataType, Option)
-Func: cbrt, 1, (Expression)
-Func: ceil, 1, (Expression)
-Func: ceiling, 1, (Expression)
-Func: char, 1, (Expression)
-Func: char_length, 1, (Expression)
-Func: character_length, 1, (Expression)
-Func: chr, 1, (Expression)
-Func: coalesce, varArgs
-Func: collect_list, 1, (Expression)
-Func: collect_list, 3, (Expression, int, int)
-Func: collect_set, 3, (Expression, int, int)
-Func: collect_set, 1, (Expression)
-Func: concat, varArgs
-Func: concat_ws, varArgs
-Func: conv, 3, (Expression, Expression, Expression)
-Func: corr, 3, (Expression, Expression, boolean)
-Func: corr, 2, (Expression, Expression)
-Func: cos, 1, (Expression)
-Func: cosh, 1, (Expression)
-Func: cot, 1, (Expression)
-Func: count, varArgs
-Func: count_if, 1, (Expression)
-Func: count_min_sketch, 4, (Expression, Expression, Expression, Expression)
-Func: count_min_sketch, 6, (Expression, Expression, Expression, Expression, int, int)
-Func: covar_pop, 3, (Expression, Expression, boolean)
-Func: covar_pop, 2, (Expression, Expression)
-Func: covar_samp, 3, (Expression, Expression, boolean)
-Func: covar_samp, 2, (Expression, Expression)
-Func: crc32, 1, (Expression)
-Func: cube, varArgs
-Func: cume_dist, 0, ()
-Func: current_database, 0, ()
-Func: current_date, 1, (Option)
-Func: current_date, 0, ()
-Func: current_timestamp, 0, ()
-Func: date, 4, (Expression, DataType, Option, boolean)
-Func: date, 3, (Expression, DataType, Option)
-Func: date_add, 2, (Expression, Expression)
-Func: date_format, 2, (Expression, Expression)
-Func: date_format, 3, (Expression, Expression, Option)
-Func: date_part, 2, (Expression, Expression)
-Func: date_sub, 2, (Expression, Expression)
-Func: date_trunc, 2, (Expression, Expression)
-Func: date_trunc, 3, (Expression, Expression, Option)
-Func: datediff, 2, (Expression, Expression)
-Func: day, 1, (Expression)
-Func: dayofmonth, 1, (Expression)
-Func: dayofweek, 1, (Expression)
-Func: dayofyear, 1, (Expression)
-Func: decimal, 4, (Expression, DataType, Option, boolean)
-Func: decimal, 3, (Expression, DataType, Option)
-Func: decode, 2, (Expression, Expression)
-Func: degrees, 1, (Expression)
-Func: dense_rank, varArgs
-Func: div, 2, (Expression, Expression)
-Func: double, 4, (Expression, DataType, Option, boolean)
-Func: double, 3, (Expression, DataType, Option)
-Func: e, 0, ()
-Func: element_at, 3, (Expression, Expression, boolean)
-Func: element_at, 2, (Expression, Expression)
-Func: elt, varArgs
-Func: encode, 2, (Expression, Expression)
-Func: every, 1, (Expression)
-Func: exists, 3, (Expression, Expression, boolean)
-Func: exists, 2, (Expression, Expression)
-Func: exp, 1, (Expression)
-Func: exp_legacy, 1, (Expression)
-Func: explode, 1, (Expression)
-Func: explode_outer, 1, (Expression)
-Func: expm1, 1, (Expression)
-Func: expm1_legacy, 1, (Expression)
-Func: extract, 2, (Expression, Expression)
-Func: factorial, 1, (Expression)
-Func: filter, 2, (Expression, Expression)
-Func: find_in_set, 2, (Expression, Expression)
-Func: first, 2, (Expression, Expression)
-Func: first, 2, (Expression, boolean)
-Func: first, 1, (Expression)
-Func: first_value, 2, (Expression, Expression)
-Func: first_value, 2, (Expression, boolean)
-Func: first_value, 1, (Expression)
-Func: flatten, 1, (Expression)
-Func: float, 4, (Expression, DataType, Option, boolean)
-Func: float, 3, (Expression, DataType, Option)
-Func: floor, 1, (Expression)
-Func: forall, 2, (Expression, Expression)
-Func: format_number, 2, (Expression, Expression)
-Func: format_string, varArgs
-Func: from_csv, 3, (Expression, Expression, Map)
-Func: from_csv, 2, (Expression, Expression)
-Func: from_csv, 3, (Expression, Expression, Expression)
-Func: from_csv, 4, (StructType, Map, Expression, Option)
-Func: from_json, 3, (Expression, Expression, Map)
-Func: from_json, 4, (DataType, Map, Expression, Option)
-Func: from_json, 3, (Expression, Expression, Expression)
-Func: from_json, 2, (Expression, Expression)
-Func: from_json_legacy, 4, (DataType, Map, Expression, Option)
-Func: from_json_legacy, 3, (DataType, Map, Expression)
-Func: from_json_legacy, 2, (Expression, Expression)
-Func: from_json_legacy, 3, (Expression, Expression, Expression)
-Func: from_unixtime, 1, (Expression)
-Func: from_unixtime, 2, (Expression, Expression)
-Func: from_unixtime, 3, (Expression, Expression, Option)
-Func: from_utc_timestamp, 2, (Expression, Expression)
-Func: get_json_object, 2, (Expression, Expression)
-Func: greatest, varArgs
-Func: grouping, 1, (Expression)
-Func: grouping_id, varArgs
-Func: hash, varArgs
-Func: hex, 1, (Expression)
-Func: hour, 1, (Expression)
-Func: hour, 2, (Expression, Option)
-Func: hypot, 2, (Expression, Expression)
-Func: if, 3, (Expression, Expression, Expression)
-Func: ifnull, 2, (Expression, Expression)
-Func: in, 2, (Expression, Seq)
-Func: initcap, 1, (Expression)
-Func: inline, 1, (Expression)
-Func: inline_outer, 1, (Expression)
-Func: input_file_block_length, 0, ()
-Func: input_file_block_start, 0, ()
-Func: input_file_name, 0, ()
-Func: instr, 2, (Expression, Expression)
-Func: int, 4, (Expression, DataType, Option, boolean)
-Func: int, 3, (Expression, DataType, Option)
-Func: isnan, 1, (Expression)
-Func: isnotnull, 1, (Expression)
-Func: isnull, 1, (Expression)
-Func: java_method, varArgs
-Func: json_array_length, 1, (Expression)
-Func: json_tuple, varArgs
-Func: kurtosis, 2, (Expression, boolean)
-Func: kurtosis, 1, (Expression)
-Func: lag, 0, ()
-Func: lag, 3, (Expression, Expression, Expression)
-Func: lag, 2, (Expression, Expression)
-Func: lag, 1, (Expression)
-Func: last, 2, (Expression, Expression)
-Func: last, 2, (Expression, boolean)
-Func: last, 1, (Expression)
-Func: last_day, 1, (Expression)
-Func: last_value, 2, (Expression, Expression)
-Func: last_value, 2, (Expression, boolean)
-Func: last_value, 1, (Expression)
-Func: lcase, 1, (Expression)
-Func: lead, 0, ()
-Func: lead, 3, (Expression, Expression, Expression)
-Func: lead, 2, (Expression, Expression)
-Func: lead, 1, (Expression)
-Func: least, varArgs
-Func: left, 2, (Expression, Expression)
-Func: length, 1, (Expression)
-Func: levenshtein, 2, (Expression, Expression)
-Func: like, 3, (Expression, Expression, char)
-Func: like, 2, (Expression, Expression)
-Func: ln, 1, (Expression)
-Func: ln_legacy, 1, (Expression)
-Func: locate, 2, (Expression, Expression)
-Func: locate, 3, (Expression, Expression, Expression)
-Func: log, 1, (Expression)
-Func: log, 2, (Expression, Expression)
-Func: log10, 1, (Expression)
-Func: log10_legacy, 1, (Expression)
-Func: log1p, 1, (Expression)
-Func: log1p_legacy, 1, (Expression)
-Func: log2, 1, (Expression)
-Func: log2_legacy, 1, (Expression)
-Func: log_legacy, 1, (Expression)
-Func: log_legacy, 2, (Expression, Expression)
-Func: lower, 1, (Expression)
-Func: lpad, 3, (Expression, Expression, Expression)
-Func: lpad, 2, (Expression, Expression)
-Func: ltrim, 2, (Expression, Expression)
-Func: ltrim, 1, (Expression)
-Func: ltrim, 2, (Expression, Option)
-Func: make_date, 3, (Expression, Expression, Expression)
-Func: make_interval, 3, (Expression, Expression, Expression)
-Func: make_interval, 5, (Expression, Expression, Expression, Expression, Expression)
-Func: make_interval, 4, (Expression, Expression, Expression, Expression)
-Func: make_interval, 2, (Expression, Expression)
-Func: make_interval, 0, ()
-Func: make_interval, 1, (Expression)
-Func: make_interval, 6, (Expression, Expression, Expression, Expression, Expression, Expression)
-Func: make_interval, 7, (Expression, Expression, Expression, Expression, Expression, Expression, Expression)
-Func: make_timestamp, 7, (Expression, Expression, Expression, Expression, Expression, Expression, Expression)
-Func: make_timestamp, 8, (Expression, Expression, Expression, Expression, Expression, Expression, Option, Option)
-Func: make_timestamp, 6, (Expression, Expression, Expression, Expression, Expression, Expression)
-Func: map, varArgs
-Func: map_concat, varArgs
-Func: map_entries, 1, (Expression)
-Func: map_filter, 2, (Expression, Expression)
-Func: map_from_arrays, 2, (Expression, Expression)
-Func: map_from_entries, 1, (Expression)
-Func: map_keys, 1, (Expression)
-Func: map_values, 1, (Expression)
-Func: map_zip_with, 3, (Expression, Expression, Expression)
-Func: max, 1, (Expression)
-Func: max_by, 2, (Expression, Expression)
-Func: md5, 1, (Expression)
-Func: mean, 1, (Expression)
-Func: mean, 2, (Expression, boolean)
-Func: min, 1, (Expression)
-Func: min_by, 2, (Expression, Expression)
-Func: minute, 1, (Expression)
-Func: minute, 2, (Expression, Option)
-Func: mod, 2, (Expression, Expression)
-Func: monotonically_increasing_id, 0, ()
-Func: month, 1, (Expression)
-Func: months_between, 4, (Expression, Expression, Expression, Option)
-Func: months_between, 2, (Expression, Expression)
-Func: months_between, 3, (Expression, Expression, Expression)
-Func: named_struct, varArgs
-Func: nanvl, 2, (Expression, Expression)
-Func: negative, 1, (Expression)
-Func: next_day, 2, (Expression, Expression)
-Func: not, 1, (Expression)
-Func: now, 0, ()
-Func: nth_value, 3, (Expression, Expression, boolean)
-Func: nth_value, 2, (Expression, Expression)
-Func: ntile, 1, (Expression)
-Func: ntile, 0, ()
-Func: nullif, 2, (Expression, Expression)
-Func: nvl, 2, (Expression, Expression)
-Func: nvl2, 3, (Expression, Expression, Expression)
-Func: octet_length, 1, (Expression)
-Func: or, 2, (Expression, Expression)
-Func: overlay, 3, (Expression, Expression, Expression)
-Func: overlay, 4, (Expression, Expression, Expression, Expression)
-Func: parse_url, varArgs
-Func: percent_rank, varArgs
-Func: percentile, 5, (Expression, Expression, Expression, int, int)
-Func: percentile, 3, (Expression, Expression, Expression)
-Func: percentile, 2, (Expression, Expression)
-Func: percentile_approx, 3, (Expression, Expression, Expression)
-Func: percentile_approx, 2, (Expression, Expression)
-Func: percentile_approx, 5, (Expression, Expression, Expression, int, int)
-Func: pi, 0, ()
-Func: pmod, 2, (Expression, Expression)
-Func: posexplode, 1, (Expression)
-Func: posexplode_outer, 1, (Expression)
-Func: position, 2, (Expression, Expression)
-Func: position, 3, (Expression, Expression, Expression)
-Func: positive, 1, (Expression)
-Func: pow, 2, (Expression, Expression)
-Func: pow_legacy, 2, (Expression, Expression)
-Func: power, 2, (Expression, Expression)
-Func: power_legacy, 2, (Expression, Expression)
-Func: printf, varArgs
-Func: quarter, 1, (Expression)
-Func: radians, 1, (Expression)
-Func: rand, 0, ()
-Func: rand, 1, (Expression)
-Func: randn, 0, ()
-Func: randn, 1, (Expression)
-Func: random, 0, ()
-Func: random, 1, (Expression)
-Func: rank, varArgs
-Func: reflect, varArgs
-Func: regexp, 2, (Expression, Expression)
-Func: regexp_extract, 2, (Expression, Expression)
-Func: regexp_extract, 3, (Expression, Expression, Expression)
-Func: regexp_extract_all, 2, (Expression, Expression)
-Func: regexp_extract_all, 3, (Expression, Expression, Expression)
-Func: regexp_replace, 3, (Expression, Expression, Expression)
-Func: regexp_replace, 4, (Expression, Expression, Expression, Expression)
-Func: repeat, 2, (Expression, Expression)
-Func: replace, 3, (Expression, Expression, Expression)
-Func: replace, 2, (Expression, Expression)
-Func: reverse, 1, (Expression)
-Func: right, 2, (Expression, Expression)
-Func: rint, 1, (Expression)
-Func: rlike, 2, (Expression, Expression)
-Func: rollup, varArgs
-Func: round, 2, (Expression, Expression)
-Func: round, 1, (Expression)
-Func: row_number, 0, ()
-Func: rpad, 3, (Expression, Expression, Expression)
-Func: rpad, 2, (Expression, Expression)
-Func: rtrim, 2, (Expression, Option)
-Func: rtrim, 2, (Expression, Expression)
-Func: rtrim, 1, (Expression)
-Func: schema_of_csv, 2, (Expression, Expression)
-Func: schema_of_csv, 1, (Expression)
-Func: schema_of_csv, 2, (Expression, Map)
-Func: schema_of_json, 2, (Expression, Map)
-Func: schema_of_json, 1, (Expression)
-Func: schema_of_json, 2, (Expression, Expression)
-Func: second, 1, (Expression)
-Func: second, 2, (Expression, Option)
-Func: sentences, 3, (Expression, Expression, Expression)
-Func: sentences, 1, (Expression)
-Func: sentences, 2, (Expression, Expression)
-Func: sequence, 3, (Expression, Expression, Expression)
-Func: sequence, 2, (Expression, Expression)
-Func: sequence, 4, (Expression, Expression, Option, Option)
-Func: sha, 1, (Expression)
-Func: sha1, 1, (Expression)
-Func: sha2, 2, (Expression, Expression)
-Func: shiftleft, 2, (Expression, Expression)
-Func: shiftright, 2, (Expression, Expression)
-Func: shiftrightunsigned, 2, (Expression, Expression)
-Func: shuffle, 2, (Expression, Option)
-Func: shuffle, 1, (Expression)
-Func: sign, 1, (Expression)
-Func: signum, 1, (Expression)
-Func: sin, 1, (Expression)
-Func: sinh, 1, (Expression)
-Func: size, 1, (Expression)
-Func: size, 2, (Expression, boolean)
-Func: skewness, 2, (Expression, boolean)
-Func: skewness, 1, (Expression)
-Func: slice, 3, (Expression, Expression, Expression)
-Func: smallint, 4, (Expression, DataType, Option, boolean)
-Func: smallint, 3, (Expression, DataType, Option)
-Func: some, 1, (Expression)
-Func: sort_array, 2, (Expression, Expression)
-Func: sort_array, 1, (Expression)
-Func: soundex, 1, (Expression)
-Func: space, 1, (Expression)
-Func: spark_partition_id, 0, ()
-Func: split, 3, (Expression, Expression, Expression)
-Func: split, 2, (Expression, Expression)
-Func: sqrt, 1, (Expression)
-Func: stack, varArgs
-Func: std, 1, (Expression)
-Func: std, 2, (Expression, boolean)
-Func: stddev, 1, (Expression)
-Func: stddev, 2, (Expression, boolean)
-Func: stddev_pop, 2, (Expression, boolean)
-Func: stddev_pop, 1, (Expression)
-Func: stddev_samp, 1, (Expression)
-Func: stddev_samp, 2, (Expression, boolean)
-Func: str_to_map, 2, (Expression, Expression)
-Func: str_to_map, 1, (Expression)
-Func: str_to_map, 3, (Expression, Expression, Expression)
-Func: string, 4, (Expression, DataType, Option, boolean)
-Func: string, 3, (Expression, DataType, Option)
-Func: struct, varArgs
-Func: substr, 3, (Expression, Expression, Expression)
-Func: substr, 2, (Expression, Expression)
-Func: substring, 3, (Expression, Expression, Expression)
-Func: substring, 2, (Expression, Expression)
-Func: substring_index, 3, (Expression, Expression, Expression)
-Func: sum, 2, (Expression, boolean)
-Func: sum, 1, (Expression)
-Func: tan, 1, (Expression)
-Func: tanh, 1, (Expression)
-Func: timestamp, 4, (Expression, DataType, Option, boolean)
-Func: timestamp, 3, (Expression, DataType, Option)
-Func: tinyint, 4, (Expression, DataType, Option, boolean)
-Func: tinyint, 3, (Expression, DataType, Option)
-Func: to_csv, 2, (Map, Expression)
-Func: to_csv, 3, (Map, Expression, Option)
-Func: to_csv, 2, (Expression, Expression)
-Func: to_csv, 1, (Expression)
-Func: to_date, 1, (Expression)
-Func: to_json, 2, (Map, Expression)
-Func: to_json, 1, (Expression)
-Func: to_json, 2, (Expression, Expression)
-Func: to_json, 3, (Map, Expression, Option)
-Func: to_timestamp, 2, (Expression, Expression)
-Func: to_timestamp, 1, (Expression)
-Func: to_unix_timestamp, 3, (Expression, Expression, Option)
-Func: to_unix_timestamp, 2, (Expression, Expression)
-Func: to_unix_timestamp, 1, (Expression)
-Func: to_utc_timestamp, 2, (Expression, Expression)
-Func: transform, 2, (Expression, Expression)
-Func: transform_keys, 2, (Expression, Expression)
-Func: transform_values, 2, (Expression, Expression)
-Func: translate, 3, (Expression, Expression, Expression)
-Func: trim, 2, (Expression, Option)
-Func: trim, 1, (Expression)
-Func: trim, 2, (Expression, Expression)
-Func: trunc, 2, (Expression, Expression)
-Func: typeof, 1, (Expression)
-Func: ucase, 1, (Expression)
-Func: unbase64, 1, (Expression)
-Func: unhex, 1, (Expression)
-Func: unix_timestamp, 2, (Expression, Expression)
-Func: unix_timestamp, 1, (Expression)
-Func: unix_timestamp, 3, (Expression, Expression, Option)
-Func: unix_timestamp, 0, ()
-Func: upper, 1, (Expression)
-Func: uuid, 0, ()
-Func: uuid, 1, (Option)
-Func: var_pop, 2, (Expression, boolean)
-Func: var_pop, 1, (Expression)
-Func: var_samp, 1, (Expression)
-Func: var_samp, 2, (Expression, boolean)
-Func: variance, 1, (Expression)
-Func: variance, 2, (Expression, boolean)
-Func: version, 0, ()
-Func: weekday, 1, (Expression)
-Func: weekofyear, 1, (Expression)
-Func: when, 2, (Seq, Option)
-Func: window, 4, (Expression, Expression, Expression, Expression)
-Func: window, 4, (Expression, long, long, long)
-Func: window, 3, (Expression, Expression, Expression)
-Func: window, 2, (Expression, Expression)
-Func: xpath, 2, (Expression, Expression)
-Func: xpath_boolean, 2, (Expression, Expression)
-Func: xpath_double, 2, (Expression, Expression)
-Func: xpath_float, 2, (Expression, Expression)
-Func: xpath_int, 2, (Expression, Expression)
-Func: xpath_long, 2, (Expression, Expression)
-Func: xpath_number, 2, (Expression, Expression)
-Func: xpath_short, 2, (Expression, Expression)
-Func: xpath_string, 2, (Expression, Expression)
-Func: xxhash64, varArgs
-Func: year, 1, (Expression)
-Func: zip_with, 3, (Expression, Expression, Expression)
-Func: |, 2, (Expression, Expression)
-Func: ~, 1, (Expression)
+FunctionName:ParamCount:ParamTypes:Group:ClassName
+!:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Not
+%:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Remainder
+&:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitwiseAnd
+*:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Multiply
++:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Add
+-:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Subtract
+/:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Divide
+<:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.LessThan
+<=:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.LessThanOrEqual
+<=>:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.EqualNullSafe
+=:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.EqualTo
+==:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.EqualTo
+>:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.GreaterThan
+>=:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.GreaterThanOrEqual
+^:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitwiseXor
+abs:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Abs
+acos:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Acos
+acosh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Acosh
+add_months:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.AddMonths
+add_months:3:(Expression; Expression; boolean):datetime_funcs:org.apache.spark.sql.catalyst.expressions.AddMonths
+aggregate:4:(Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayAggregate
+aggregate:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayAggregate
+and:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.And
+any:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BoolOr
+approx_count_distinct:4:(Expression; double; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.HyperLogLogPlusPlus
+approx_count_distinct:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.HyperLogLogPlusPlus
+approx_count_distinct:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.HyperLogLogPlusPlus
+approx_percentile:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+approx_percentile:5:(Expression; Expression; Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+approx_percentile:3:(Expression; Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+array:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CreateArray
+array_contains:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayContains
+array_distinct:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayDistinct
+array_except:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayExcept
+array_intersect:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayIntersect
+array_join:3:(Expression; Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayJoin
+array_join:3:(Expression; Expression; Option):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayJoin
+array_join:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayJoin
+array_max:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayMax
+array_min:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayMin
+array_position:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayPosition
+array_remove:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayRemove
+array_repeat:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayRepeat
+array_sort:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArraySort
+array_sort:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArraySort
+array_union:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArrayUnion
+arrays_overlap:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.ArraysOverlap
+arrays_zip:-1:(Seq):array_funcs:org.apache.spark.sql.catalyst.expressions.ArraysZip
+ascii:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Ascii
+asin:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Asin
+asinh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Asinh
+assert_true:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.AssertTrue
+atan:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Atan
+atan2:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Atan2
+atanh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Atanh
+avg:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Average
+base64:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Base64
+bigint:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+bin:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Bin
+binary:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+bit_and:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.aggregate.BitAndAgg
+bit_count:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitwiseCount
+bit_length:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitLength
+bit_or:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BitOrAgg
+bit_xor:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BitXorAgg
+bool_and:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BoolAnd
+bool_or:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BoolOr
+boolean:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+bround:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BRound
+bround:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BRound
+cardinality:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Size
+cardinality:2:(Expression; boolean):unknown_group:org.apache.spark.sql.catalyst.expressions.Size
+cast:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+cbrt:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Cbrt
+ceil:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Ceil
+ceiling:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Ceil
+char:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Chr
+char_length:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Length
+character_length:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Length
+chr:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Chr
+coalesce:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Coalesce
+collect_list:3:(Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CollectList
+collect_list:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CollectList
+collect_set:3:(Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CollectSet
+collect_set:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CollectSet
+concat:-1:(Seq):array_funcs:org.apache.spark.sql.catalyst.expressions.Concat
+concat_ws:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.ConcatWs
+conv:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Conv
+corr:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Corr
+cos:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Cos
+cosh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Cosh
+cot:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Cot
+count:-1:(Seq):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Count
+count_if:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CountIf
+count_min_sketch:6:(Expression; Expression; Expression; Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CountMinSketchAgg
+count_min_sketch:4:(Expression; Expression; Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CountMinSketchAgg
+covar_pop:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CovPopulation
+covar_samp:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.CovSample
+crc32:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Crc32
+cube:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Cube
+cume_dist:0:():window_funcs:org.apache.spark.sql.catalyst.expressions.CumeDist
+current_database:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.CurrentDatabase
+current_date:1:(Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.CurrentDate
+current_date:0:():datetime_funcs:org.apache.spark.sql.catalyst.expressions.CurrentDate
+current_timestamp:0:():datetime_funcs:org.apache.spark.sql.catalyst.expressions.CurrentTimestamp
+date:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+date_add:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DateAdd
+date_format:3:(Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DateFormatClass
+date_format:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DateFormatClass
+date_part:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DatePart
+date_sub:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DateSub
+date_trunc:3:(Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.TruncTimestamp
+date_trunc:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.TruncTimestamp
+datediff:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DateDiff
+day:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.DayOfMonth
+dayofmonth:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.DayOfMonth
+dayofweek:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DayOfWeek
+dayofyear:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.DayOfYear
+decimal:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+decode:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Decode
+degrees:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ToDegrees
+dense_rank:-1:(Seq):window_funcs:org.apache.spark.sql.catalyst.expressions.DenseRank
+div:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.IntegralDivide
+double:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+e:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.EulerNumber
+element_at:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ElementAt
+elt:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Elt
+encode:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Encode
+every:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BoolAnd
+exists:3:(Expression; Expression; boolean):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayExists
+exists:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayExists
+exp:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Exp
+exp_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ExpLegacy
+explode:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Explode
+explode_outer:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Explode
+expm1:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Expm1
+expm1_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Expm1Legacy
+extract:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Extract
+factorial:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Factorial
+filter:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayFilter
+find_in_set:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.FindInSet
+first:2:(Expression; boolean):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+first:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+first:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+first_value:2:(Expression; boolean):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+first_value:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+first_value:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.First
+flatten:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Flatten
+float:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+floor:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Floor
+forall:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayForAll
+format_number:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.FormatNumber
+format_string:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.FormatString
+from_csv:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.CsvToStructs
+from_csv:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.CsvToStructs
+from_csv:3:(Expression; Expression; Map<String, String>):unknown_group:org.apache.spark.sql.catalyst.expressions.CsvToStructs
+from_csv:4:(Struct<?>; Map<String, String>; Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.CsvToStructs
+from_json:2:(Expression; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.JsonToStructs
+from_json:3:(Expression; Expression; Map<String, String>):json_funcs:org.apache.spark.sql.catalyst.expressions.JsonToStructs
+from_json:3:(Expression; Expression; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.JsonToStructs
+from_json:4:(DataType; Map<String, String>; Expression; Option):json_funcs:org.apache.spark.sql.catalyst.expressions.JsonToStructs
+from_json_legacy:4:(DataType; Map<String, String>; Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.JsonToStructsLegacy
+from_json_legacy:3:(DataType; Map<String, String>; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.JsonToStructsLegacy
+from_json_legacy:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.JsonToStructsLegacy
+from_json_legacy:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.JsonToStructsLegacy
+from_unixtime:3:(Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.FromUnixTime
+from_unixtime:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.FromUnixTime
+from_unixtime:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.FromUnixTime
+from_utc_timestamp:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.FromUTCTimestamp
+get_json_object:2:(Expression; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.GetJsonObject
+greatest:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Greatest
+grouping:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Grouping
+grouping_id:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.GroupingID
+hash:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Murmur3Hash
+hex:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Hex
+hour:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Hour
+hour:2:(Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Hour
+hypot:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Hypot
+if:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.If
+ifnull:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.IfNull
+in:2:(Expression; Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.In
+initcap:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.InitCap
+inline:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Inline
+inline_outer:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Inline
+input_file_block_length:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.InputFileBlockLength
+input_file_block_start:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.InputFileBlockStart
+input_file_name:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.InputFileName
+instr:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringInstr
+int:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+isnan:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.IsNaN
+isnotnull:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.IsNotNull
+isnull:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.IsNull
+java_method:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CallMethodViaReflection
+json_tuple:-1:(Seq):json_funcs:org.apache.spark.sql.catalyst.expressions.JsonTuple
+kurtosis:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Kurtosis
+lag:0:():window_funcs:org.apache.spark.sql.catalyst.expressions.Lag
+lag:3:(Expression; Expression; Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lag
+lag:2:(Expression; Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lag
+lag:1:(Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lag
+last:2:(Expression; boolean):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+last:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+last:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+last_day:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.LastDay
+last_value:2:(Expression; boolean):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+last_value:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+last_value:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Last
+lcase:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Lower
+lead:0:():window_funcs:org.apache.spark.sql.catalyst.expressions.Lead
+lead:3:(Expression; Expression; Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lead
+lead:2:(Expression; Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lead
+lead:1:(Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.Lead
+least:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Least
+left:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Left
+length:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Length
+levenshtein:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Levenshtein
+like:3:(Expression; Expression; char):unknown_group:org.apache.spark.sql.catalyst.expressions.Like
+like:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Like
+ln:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log
+ln_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.LogLegacy
+locate:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLocate
+locate:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLocate
+log:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Logarithm
+log:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Logarithm
+log10:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log10
+log10_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log10Legacy
+log1p:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log1p
+log1p_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log1pLegacy
+log2:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log2
+log2_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Log2Legacy
+log_legacy:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.LogarithmLegacy
+log_legacy:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.LogarithmLegacy
+lower:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Lower
+lpad:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLPad
+lpad:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLPad
+ltrim:2:(Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimLeft
+ltrim:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimLeft
+ltrim:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimLeft
+make_date:3:(Expression; Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MakeDate
+make_interval:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:4:(Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:5:(Expression; Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:6:(Expression; Expression; Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_interval:7:(Expression; Expression; Expression; Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MakeInterval
+make_timestamp:6:(Expression; Expression; Expression; Expression; Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MakeTimestamp
+make_timestamp:8:(Expression; Expression; Expression; Expression; Expression; Expression; Option; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MakeTimestamp
+make_timestamp:7:(Expression; Expression; Expression; Expression; Expression; Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MakeTimestamp
+map:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CreateMap
+map_concat:-1:(Seq):map_funcs:org.apache.spark.sql.catalyst.expressions.MapConcat
+map_entries:1:(Expression):map_funcs:org.apache.spark.sql.catalyst.expressions.MapEntries
+map_filter:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MapFilter
+map_from_arrays:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MapFromArrays
+map_from_entries:1:(Expression):map_funcs:org.apache.spark.sql.catalyst.expressions.MapFromEntries
+map_keys:1:(Expression):map_funcs:org.apache.spark.sql.catalyst.expressions.MapKeys
+map_values:1:(Expression):map_funcs:org.apache.spark.sql.catalyst.expressions.MapValues
+map_zip_with:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.MapZipWith
+max:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Max
+max_by:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.MaxBy
+md5:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Md5
+mean:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Average
+min:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Min
+min_by:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.MinBy
+minute:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Minute
+minute:2:(Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Minute
+mod:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Remainder
+monotonically_increasing_id:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.MonotonicallyIncreasingID
+month:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Month
+months_between:4:(Expression; Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MonthsBetween
+months_between:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MonthsBetween
+months_between:3:(Expression; Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.MonthsBetween
+named_struct:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CreateNamedStruct
+nanvl:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.NaNvl
+negative:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.UnaryMinus
+next_day:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.NextDay
+not:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Not
+now:0:():datetime_funcs:org.apache.spark.sql.catalyst.expressions.Now
+ntile:1:(Expression):window_funcs:org.apache.spark.sql.catalyst.expressions.NTile
+ntile:0:():window_funcs:org.apache.spark.sql.catalyst.expressions.NTile
+nullif:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.NullIf
+nvl:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Nvl
+nvl2:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Nvl2
+octet_length:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.OctetLength
+or:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Or
+overlay:4:(Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Overlay
+overlay:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Overlay
+parse_url:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.ParseUrl
+percent_rank:-1:(Seq):window_funcs:org.apache.spark.sql.catalyst.expressions.PercentRank
+percentile:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Percentile
+percentile:3:(Expression; Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Percentile
+percentile:5:(Expression; Expression; Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Percentile
+percentile_approx:2:(Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+percentile_approx:5:(Expression; Expression; Expression; int; int):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+percentile_approx:3:(Expression; Expression; Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.ApproximatePercentile
+pi:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.Pi
+pmod:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Pmod
+posexplode:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.PosExplode
+posexplode_outer:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.PosExplode
+position:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLocate
+position:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringLocate
+positive:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.UnaryPositive
+pow:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Pow
+pow_legacy:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.PowLegacy
+power:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Pow
+power_legacy:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.PowLegacy
+printf:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.FormatString
+quarter:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Quarter
+radians:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ToRadians
+rand:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.Rand
+rand:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Rand
+randn:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.Randn
+randn:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Randn
+random:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.Rand
+random:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Rand
+rank:-1:(Seq):window_funcs:org.apache.spark.sql.catalyst.expressions.Rank
+reflect:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CallMethodViaReflection
+regexp:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.RLike
+regexp_extract:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.RegExpExtract
+regexp_extract:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.RegExpExtract
+regexp_replace:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.RegExpReplace
+repeat:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringRepeat
+replace:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringReplace
+replace:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringReplace
+reverse:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Reverse
+right:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Right
+rint:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Rint
+rlike:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.RLike
+rollup:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Rollup
+round:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Round
+round:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Round
+row_number:0:():window_funcs:org.apache.spark.sql.catalyst.expressions.RowNumber
+rpad:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringRPad
+rpad:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringRPad
+rtrim:2:(Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimRight
+rtrim:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimRight
+rtrim:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrimRight
+schema_of_csv:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.SchemaOfCsv
+schema_of_csv:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.SchemaOfCsv
+schema_of_csv:2:(Expression; Map<String, String>):unknown_group:org.apache.spark.sql.catalyst.expressions.SchemaOfCsv
+schema_of_json:2:(Expression; Map<String, String>):json_funcs:org.apache.spark.sql.catalyst.expressions.SchemaOfJson
+schema_of_json:1:(Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.SchemaOfJson
+schema_of_json:2:(Expression; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.SchemaOfJson
+second:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Second
+second:2:(Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Second
+sentences:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sentences
+sentences:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sentences
+sentences:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sentences
+sequence:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Sequence
+sequence:4:(Expression; Expression; Option; Option):array_funcs:org.apache.spark.sql.catalyst.expressions.Sequence
+sequence:3:(Expression; Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Sequence
+sha:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sha1
+sha1:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sha1
+sha2:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sha2
+shiftleft:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ShiftLeft
+shiftright:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ShiftRight
+shiftrightunsigned:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ShiftRightUnsigned
+shuffle:2:(Expression; Option):array_funcs:org.apache.spark.sql.catalyst.expressions.Shuffle
+shuffle:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Shuffle
+sign:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Signum
+signum:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Signum
+sin:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sin
+sinh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sinh
+size:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Size
+size:2:(Expression; boolean):unknown_group:org.apache.spark.sql.catalyst.expressions.Size
+skewness:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Skewness
+slice:3:(Expression; Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.Slice
+smallint:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+some:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.BoolOr
+sort_array:2:(Expression; Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.SortArray
+sort_array:1:(Expression):array_funcs:org.apache.spark.sql.catalyst.expressions.SortArray
+soundex:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.SoundEx
+space:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringSpace
+spark_partition_id:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.SparkPartitionID
+split:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringSplit
+split:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringSplit
+sqrt:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Sqrt
+stack:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.Stack
+std:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.StddevSamp
+stddev:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.StddevSamp
+stddev_pop:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.StddevPop
+stddev_samp:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.StddevSamp
+str_to_map:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringToMap
+str_to_map:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringToMap
+str_to_map:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringToMap
+string:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+struct:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.CreateNamedStruct
+substr:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Substring
+substr:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Substring
+substring:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Substring
+substring:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Substring
+substring_index:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.SubstringIndex
+sum:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.Sum
+tan:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Tan
+tanh:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Tanh
+timestamp:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+tinyint:3:(Expression; DataType; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Cast
+to_csv:2:(Map<String, String>; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StructsToCsv
+to_csv:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StructsToCsv
+to_csv:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StructsToCsv
+to_csv:3:(Map<String, String>; Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.StructsToCsv
+to_date:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ToDate
+to_json:1:(Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.StructsToJson
+to_json:2:(Map<String, String>; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.StructsToJson
+to_json:2:(Expression; Expression):json_funcs:org.apache.spark.sql.catalyst.expressions.StructsToJson
+to_json:3:(Map<String, String>; Expression; Option):json_funcs:org.apache.spark.sql.catalyst.expressions.StructsToJson
+to_timestamp:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ParseToTimestamp
+to_timestamp:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ParseToTimestamp
+to_unix_timestamp:3:(Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ToUnixTimestamp
+to_unix_timestamp:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ToUnixTimestamp
+to_unix_timestamp:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ToUnixTimestamp
+to_utc_timestamp:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.ToUTCTimestamp
+transform:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ArrayTransform
+transform_keys:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TransformKeys
+transform_values:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TransformValues
+translate:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTranslate
+trim:2:(Expression; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrim
+trim:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrim
+trim:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.StringTrim
+trunc:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.TruncDate
+typeof:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TypeOf
+ucase:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Upper
+unbase64:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.UnBase64
+unhex:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Unhex
+unix_timestamp:0:():datetime_funcs:org.apache.spark.sql.catalyst.expressions.UnixTimestamp
+unix_timestamp:3:(Expression; Expression; Option):datetime_funcs:org.apache.spark.sql.catalyst.expressions.UnixTimestamp
+unix_timestamp:2:(Expression; Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.UnixTimestamp
+unix_timestamp:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.UnixTimestamp
+upper:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.Upper
+uuid:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.Uuid
+uuid:1:(Option):unknown_group:org.apache.spark.sql.catalyst.expressions.Uuid
+var_pop:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.VariancePop
+var_samp:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.VarianceSamp
+variance:1:(Expression):agg_funcs:org.apache.spark.sql.catalyst.expressions.aggregate.VarianceSamp
+version:0:():unknown_group:org.apache.spark.sql.catalyst.expressions.SparkVersion
+weekday:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.WeekDay
+weekofyear:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.WeekOfYear
+when:2:(Seq; Option):unknown_group:org.apache.spark.sql.catalyst.expressions.CaseWhen
+window:4:(Expression; Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TimeWindow
+window:4:(Expression; long; long; long):unknown_group:org.apache.spark.sql.catalyst.expressions.TimeWindow
+window:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TimeWindow
+window:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.TimeWindow
+xpath:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathList
+xpath_boolean:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathBoolean
+xpath_double:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathDouble
+xpath_float:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathFloat
+xpath_int:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathInt
+xpath_long:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathLong
+xpath_number:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathDouble
+xpath_short:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathShort
+xpath_string:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.xml.XPathString
+xxhash64:-1:(Seq):unknown_group:org.apache.spark.sql.catalyst.expressions.XxHash64
+year:1:(Expression):datetime_funcs:org.apache.spark.sql.catalyst.expressions.Year
+zip_with:3:(Expression; Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.ZipWith
+|:2:(Expression; Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitwiseOr
+~:1:(Expression):unknown_group:org.apache.spark.sql.catalyst.expressions.BitwiseNot
