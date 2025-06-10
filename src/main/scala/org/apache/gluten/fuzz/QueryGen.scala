@@ -39,7 +39,7 @@ object QueryGen {
       spark.read.parquet(s"zhaokuo03/test$i.parquet").createTempView(s"test$i")
     }
 
-    val w = new BufferedWriter(new FileWriter("queries.sql"))
+    val w = new BufferedWriter(new FileWriter("zhaokuo03/queries.sql"))
 
     val uniqueQueries = mutable.HashSet[String]()
 

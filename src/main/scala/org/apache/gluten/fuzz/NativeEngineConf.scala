@@ -32,6 +32,9 @@ class NativeEngineConf(engineType: NativeEngineType) {
           .setIfMissing("spark.executor.memory", "1g")
           .setIfMissing("spark.memory.offHeap.enabled", "true")
           .setIfMissing("spark.memory.offHeap.size", "2g")
+      case NativeEngineType.VANILLA =>
+        conf.setIfMissing("spark.shuffle.manager", "sort")
+          .setIfMissing("spark.executor.memory", "2g")
     }
   }
 
@@ -43,6 +46,7 @@ class NativeEngineConf(engineType: NativeEngineType) {
         spark.conf.set("spark.comet.enabled", "false")
       case NativeEngineType.GLUTEN =>
         spark.conf.set("spark.gluten.enabled", "false")
+      case NativeEngineType.VANILLA =>
     }
   }
 
@@ -54,6 +58,7 @@ class NativeEngineConf(engineType: NativeEngineType) {
         spark.conf.set("spark.comet.enabled", "true")
       case NativeEngineType.GLUTEN =>
         spark.conf.set("spark.gluten.enabled", "true")
+      case NativeEngineType.VANILLA =>
     }
   }
 
@@ -70,4 +75,5 @@ object NativeEngineType extends Enumeration {
   val BLAZE: Value = Value("blaze")
   val COMET: Value = Value("comet")
   val GLUTEN: Value = Value("gluten")
+  val VANILLA: Value = Value("vanilla")
 }
