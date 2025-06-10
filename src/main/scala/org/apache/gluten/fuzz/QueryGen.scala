@@ -270,7 +270,7 @@ object QueryGen {
       fields.map(Seq(_)).toSeq
     } else {
       // 对于多参数函数，可能的组合非常多，这里限制组合数量
-      val maxCombinations = 100 // 限制组合数量，避免生成过多SQL
+      val maxCombinations = 10000 // 限制组合数量，避免生成过多SQL
 
       def combinations(fields: Array[String], length: Int): Seq[Seq[String]] = {
         if (length == 0) {
@@ -285,6 +285,7 @@ object QueryGen {
 
       val allCombinations = combinations(fields, length)
       if (allCombinations.length > maxCombinations) {
+        println(s"Too many combinations for length $length, only generate ${maxCombinations} combinations")
         // 如果组合太多，随机选择一部分
         scala.util.Random.shuffle(allCombinations).take(maxCombinations)
       } else {
