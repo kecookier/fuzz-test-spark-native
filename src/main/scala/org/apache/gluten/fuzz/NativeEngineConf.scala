@@ -34,7 +34,8 @@ class NativeEngineConf(engineType: NativeEngineType) {
           .setIfMissing("spark.memory.offHeap.size", "2g")
       case NativeEngineType.VANILLA =>
         conf.setIfMissing("spark.shuffle.manager", "sort")
-          .setIfMissing("spark.executor.memory", "2g")
+          .setIfMissing("spark.executor.memory", "16g")
+          .setIfMissing("spark.driver.memory", "10g")
     }
   }
 
