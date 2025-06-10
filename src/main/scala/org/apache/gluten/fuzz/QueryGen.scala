@@ -34,7 +34,8 @@ object QueryGen {
       r: Random,
       spark: SparkSession,
       numFiles: Int,
-      numQueries: Int): Unit = {
+      numQueries: Int,
+      noRandom : Boolean = false): Unit = {
     for (i <- 0 until numFiles) {
       spark.read.parquet(s"zhaokuo03/test$i.parquet").createTempView(s"test$i")
     }
@@ -43,25 +44,41 @@ object QueryGen {
 
     val uniqueQueries = mutable.HashSet[String]()
 
-    for (_ <- 0 until numQueries) {
-      val sql = r.nextInt().abs % 8 match {
-        case _ => generateScalar(r, spark, numFiles)
-//        case 0 => generateJoin(r, spark, numFiles)
-//        case 1 => generateAggregate(r, spark, numFiles)
-//        case 2 => generateScalar(r, spark, numFiles)
-//        case 3 => generateCast(r, spark, numFiles)
-//        case 4 => generateUnaryArithmetic(r, spark, numFiles)
-//        case 5 => generateBinaryArithmetic(r, spark, numFiles)
-//        case 6 => generateBinaryComparison(r, spark, numFiles)
-//        case _ => generateConditional(r, spark, numFiles)
+    if (noRandom) {
+      // 生成所有标量函数的 SQL
+      val allFunctionQueries = generateAllScalarFunctions(r, spark, numFiles)
+      println(s"Generated ${allFunctionQueries.size} queries for all scalar functions")
+
+      // 写入文件
+      allFunctionQueries.foreach { sql =>
+        if (!uniqueQueries.contains(sql)) {
+          uniqueQueries += sql
+          w.write(sql + "\n")
+        }
       }
-      if (!uniqueQueries.contains(sql)) {
-        uniqueQueries += sql
-        w.write(sql + "\n")
-      } else {
-        println(s"duplicate query: $sql")
+
+    } else {
+      for (_ <- 0 until numQueries) {
+        val sql = r.nextInt().abs % 8 match {
+          case _ => generateScalar(r, spark, numFiles)
+          //        case 0 => generateJoin(r, spark, numFiles)
+          //        case 1 => generateAggregate(r, spark, numFiles)
+          //        case 2 => generateScalar(r, spark, numFiles)
+          //        case 3 => generateCast(r, spark, numFiles)
+          //        case 4 => generateUnaryArithmetic(r, spark, numFiles)
+          //        case 5 => generateBinaryArithmetic(r, spark, numFiles)
+          //        case 6 => generateBinaryComparison(r, spark, numFiles)
+          //        case _ => generateConditional(r, spark, numFiles)
+        }
+        if (!uniqueQueries.contains(sql)) {
+          uniqueQueries += sql
+          w.write(sql + "\n")
+        } else {
+          println(s"duplicate query: $sql")
+        }
       }
     }
+
     w.close()
   }
 
@@ -115,6 +132,63 @@ object QueryGen {
     s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
       s"FROM $tableName " +
       s"ORDER BY ${args.mkString(", ")};"
+  }
+
+  private def generateAllScalarFunctions(r: Random, spark: SparkSession, numFiles: Int): Seq[String] = {
+
+    val tableName = s"test${r.nextInt(numFiles)}"
+    val table = spark.table(tableName)
+    val schema = table.schema
+
+    // 遍历所有标量函数，为每个函数生成一条 SQL
+    Meta.scalarFunc.flatMap { func =>
+      try {
+        // 为每个函数尝试多次生成参数，增加成功率
+        val maxAttempts = 3
+        var attempts = 0
+        var result: Option[String] = None
+
+        while (attempts < maxAttempts && result.isEmpty) {
+          attempts += 1
+          try {
+            val args = func match {
+              case FunctionWithSignature(_, _, _, argTypes) =>
+                val fields = schema.fields
+                argTypes.map {
+                  case ScalarValueType(_, generateValueFunc) =>
+                    generateValueFunc()
+                  case t: WithSupportedType =>
+                    val supportedFields = fields.filter(f => t.isSupported(f.dataType))
+                    if (supportedFields.isEmpty) throw new RuntimeException(s"No supported fields for $t")
+                    Utils.randomChoice(supportedFields.map(_.name), r)
+                  case argType =>
+                    val matchingFields = fields.filter(f => f.dataType == argType)
+                    if (matchingFields.isEmpty) throw new RuntimeException(s"No matching fields for $argType")
+                    Utils.randomChoice(matchingFields.map(_.name), r)
+                }
+              case _ =>
+                Range(0, func.num_args).map(_ => Utils.randomChoice(schema.fieldNames, r))
+            }
+
+            // 生成 SQL
+            val sql = s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
+              s"FROM $tableName " +
+              s"ORDER BY ${args.mkString(", ")};"
+
+            result = Some(sql)
+          } catch {
+            case e: Exception =>
+              println(s"Failed to generate SQL for function ${func.name} (attempt $attempts): ${e.getMessage}")
+          }
+        }
+
+        result.toSeq
+      } catch {
+        case e: Exception =>
+          println(s"Failed to process function ${func.name}: ${e.getMessage}")
+          Seq.empty
+      }
+    }
   }
 
   private def generateUnaryArithmetic(r: Random, spark: SparkSession, numFiles: Int): String = {

@@ -85,7 +85,8 @@ object Main {
           r,
           createSparkSession(),
           numFiles = conf.generateQueries.numFiles(),
-          conf.generateQueries.numQueries())
+          conf.generateQueries.numQueries(),
+          noRandom = true)
       case Some(conf.runQueries) =>
         val nativeEngineConf = NativeEngineConf(conf.runQueries.nativeEngine())
         QueryRunner.runQueries(
