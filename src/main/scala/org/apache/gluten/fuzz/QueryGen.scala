@@ -134,59 +134,161 @@ object QueryGen {
       s"ORDER BY ${args.mkString(", ")};"
   }
 
-  private def generateAllScalarFunctions(r: Random, spark: SparkSession, numFiles: Int): Seq[String] = {
+//  private def generateAllScalarFunctions(r: Random, spark: SparkSession, numFiles: Int): Seq[String] = {
+//
+//    val tableName = s"test${r.nextInt(numFiles)}"
+//    val table = spark.table(tableName)
+//    val schema = table.schema
+//
+//    // 遍历所有标量函数，为每个函数生成一条 SQL
+//    Meta.scalarFunc.flatMap { func =>
+//      try {
+//        // 为每个函数尝试多次生成参数，增加成功率
+//        val maxAttempts = 3
+//        var attempts = 0
+//        var result: Option[String] = None
+//
+//        while (attempts < maxAttempts && result.isEmpty) {
+//          attempts += 1
+//          try {
+//            val args = func match {
+//              case FunctionWithSignature(_, _, _, argTypes) =>
+//                val fields = schema.fields
+//                argTypes.map {
+//                  case ScalarValueType(_, generateValueFunc) =>
+//                    generateValueFunc()
+//                  case t: WithSupportedType =>
+//                    val supportedFields = fields.filter(f => t.isSupported(f.dataType))
+//                    if (supportedFields.isEmpty) throw new RuntimeException(s"No supported fields for $t")
+//                    Utils.randomChoice(supportedFields.map(_.name), r)
+//                  case argType =>
+//                    val matchingFields = fields.filter(f => f.dataType == argType)
+//                    if (matchingFields.isEmpty) throw new RuntimeException(s"No matching fields for $argType")
+//                    Utils.randomChoice(matchingFields.map(_.name), r)
+//                }
+//              case _ =>
+//                Range(0, func.num_args).map(_ => Utils.randomChoice(schema.fieldNames, r))
+//            }
+//
+//            // 生成 SQL
+//            val sql = s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
+//              s"FROM $tableName " +
+//              s"ORDER BY ${args.mkString(", ")};"
+//
+//            result = Some(sql)
+//          } catch {
+//            case e: Exception =>
+//              println(s"Failed to generate SQL for function ${func.name} (attempt $attempts): ${e.getMessage}")
+//          }
+//        }
+//
+//        result.toSeq
+//      } catch {
+//        case e: Exception =>
+//          println(s"Failed to process function ${func.name}: ${e.getMessage}")
+//          Seq.empty
+//      }
+//    }
+//  }
 
+  private def generateAllScalarFunctions(r: Random, spark: SparkSession, numFiles: Int): Seq[String] = {
     val tableName = s"test${r.nextInt(numFiles)}"
     val table = spark.table(tableName)
     val schema = table.schema
+    val fieldNames = schema.fieldNames
 
-    // 遍历所有标量函数，为每个函数生成一条 SQL
+    // 遍历所有标量函数
     Meta.scalarFunc.flatMap { func =>
       try {
-        // 为每个函数尝试多次生成参数，增加成功率
-        val maxAttempts = 3
-        var attempts = 0
-        var result: Option[String] = None
-
-        while (attempts < maxAttempts && result.isEmpty) {
-          attempts += 1
-          try {
-            val args = func match {
-              case FunctionWithSignature(_, _, _, argTypes) =>
-                val fields = schema.fields
-                argTypes.map {
-                  case ScalarValueType(_, generateValueFunc) =>
-                    generateValueFunc()
-                  case t: WithSupportedType =>
-                    val supportedFields = fields.filter(f => t.isSupported(f.dataType))
-                    if (supportedFields.isEmpty) throw new RuntimeException(s"No supported fields for $t")
-                    Utils.randomChoice(supportedFields.map(_.name), r)
-                  case argType =>
-                    val matchingFields = fields.filter(f => f.dataType == argType)
-                    if (matchingFields.isEmpty) throw new RuntimeException(s"No matching fields for $argType")
-                    Utils.randomChoice(matchingFields.map(_.name), r)
-                }
-              case _ =>
-                Range(0, func.num_args).map(_ => Utils.randomChoice(schema.fieldNames, r))
+        func match {
+          case FunctionWithSignature(_, numArgs, _, argTypes) =>
+            val argCombinations : Seq[Seq[String]] = argTypes.zipWithIndex.map { case (argType, idx) =>
+              argType match {
+                case ScalarValueType(_, generateValueFunc) =>
+                  Seq(generateValueFunc())
+                case t: WithSupportedType =>
+                  val supportedFields = schema.fields.filter(f => t.isSupported(f.dataType))
+                  if (supportedFields.isEmpty) Seq.empty else supportedFields.map(_.name).toSeq
+                case specificType =>
+                  val matchingFields = schema.fields.filter(f => f.dataType == specificType)
+                  if (matchingFields.isEmpty) Seq.empty else matchingFields.map(_.name).toSeq
+              }
             }
 
-            // 生成 SQL
-            val sql = s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
-              s"FROM $tableName " +
-              s"ORDER BY ${args.mkString(", ")};"
+            if (argCombinations.exists(_.isEmpty)) {
+              println(s"Skipping function ${func.name}: no matching fields for some argument types")
+              Seq.empty
+            } else {
+              val allArgCombinations = generateCombinations(argCombinations)
 
-            result = Some(sql)
-          } catch {
-            case e: Exception =>
-              println(s"Failed to generate SQL for function ${func.name} (attempt $attempts): ${e.getMessage}")
-          }
+              allArgCombinations.map { args =>
+                s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
+                  s"FROM $tableName " +
+                  s"ORDER BY ${args.mkString(", ")};"
+              }
+            }
+
+          case _ =>
+            // 对于没有签名的函数，生成所有可能的字段组合
+            val numArgs = func.num_args
+            if (numArgs == 0) {
+              // 无参数函数
+              Seq(s"SELECT ${func.name}() AS x FROM $tableName;")
+            } else {
+              // 生成所有长度为numArgs的字段组合
+              val fieldCombinations = generateFieldCombinations(fieldNames, numArgs)
+              fieldCombinations.map { args =>
+                s"SELECT ${args.mkString(", ")}, ${func.name}(${args.mkString(", ")}) AS x " +
+                  s"FROM $tableName " +
+                  s"ORDER BY ${args.mkString(", ")};"
+              }
+            }
         }
-
-        result.toSeq
       } catch {
         case e: Exception =>
           println(s"Failed to process function ${func.name}: ${e.getMessage}")
           Seq.empty
+      }
+    }
+  }
+
+  // 生成参数类型的所有组合
+  private def generateCombinations(argOptions: Seq[Seq[String]]): Seq[Seq[String]] = {
+    argOptions.foldLeft(Seq(Seq.empty[String])) { (acc, options) =>
+      for {
+        combination <- acc
+        option <- options
+      } yield combination :+ option
+    }
+  }
+
+  // 生成指定长度的字段组合（考虑到全排列可能非常大，这里限制组合数量）
+  private def generateFieldCombinations(fields: Array[String], length: Int): Seq[Seq[String]] = {
+    if (length == 0) {
+      Seq(Seq.empty)
+    } else if (length == 1) {
+      fields.map(Seq(_)).toSeq
+    } else {
+      // 对于多参数函数，可能的组合非常多，这里限制组合数量
+      val maxCombinations = 100 // 限制组合数量，避免生成过多SQL
+
+      def combinations(fields: Array[String], length: Int): Seq[Seq[String]] = {
+        if (length == 0) {
+          Seq(Seq.empty)
+        } else {
+          for {
+            i <- fields.indices.toSeq
+            rest <- combinations(fields, length - 1)
+          } yield fields(i) +: rest
+        }
+      }
+
+      val allCombinations = combinations(fields, length)
+      if (allCombinations.length > maxCombinations) {
+        // 如果组合太多，随机选择一部分
+        scala.util.Random.shuffle(allCombinations).take(maxCombinations)
+      } else {
+        allCombinations
       }
     }
   }
