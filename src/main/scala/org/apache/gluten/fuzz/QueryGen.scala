@@ -67,7 +67,7 @@ object QueryGen {
     val func = Utils.randomChoice(functions, r)
     val args = func match {
       case FunctionWithSignature(_, _, _, args) =>
-        println(s"func: $func.name")
+        println(s"func: $func")
         val fields = schema.fields
         args.map {
           case ScalarValueType(_, generateValueFunc) =>

@@ -56,9 +56,17 @@ object DataGen {
       generateNegativeZero: Boolean): Unit = {
 
     // generate schema using random data types
-    val fields = Range(0, numColumns)
-      .map(i =>
-        StructField(s"c$i", Utils.randomWeightedChoice(Meta.dataTypes, r), nullable = true))
+    val fields = if (numColumns >= 0) {
+      // 原来的随机类型逻辑
+      Range(0, numColumns)
+        .map(i =>
+          StructField(s"c$i", Utils.randomWeightedChoice(Meta.dataTypes, r), nullable = true))
+    } else {
+      // 当 numColumns < 0 时，遍历所有类型，每个类型生成一列
+      Meta.dataTypes.zipWithIndex.map { case ((dataType, _), idx) =>
+        StructField(s"c$idx", dataType, nullable = true)
+      }
+    }
     val schema = StructType(fields)
 
     // generate columnar data
