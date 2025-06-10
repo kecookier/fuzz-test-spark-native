@@ -58,6 +58,8 @@ object QueryGen {
       if (!uniqueQueries.contains(sql)) {
         uniqueQueries += sql
         w.write(sql + "\n")
+      } else {
+        println(s"duplicate query: $sql")
       }
     }
     w.close()
