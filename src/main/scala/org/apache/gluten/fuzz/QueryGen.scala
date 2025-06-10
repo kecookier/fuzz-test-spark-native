@@ -36,7 +36,7 @@ object QueryGen {
       numFiles: Int,
       numQueries: Int): Unit = {
     for (i <- 0 until numFiles) {
-      spark.read.parquet(s"test$i.parquet").createTempView(s"test$i")
+      spark.read.parquet(s"zhaokuo03/test$i.parquet").createTempView(s"test$i")
     }
 
     val w = new BufferedWriter(new FileWriter("queries.sql"))

@@ -45,7 +45,7 @@ object QueryRunner {
     // register input files
     w.write("## Table Schema\n")
     for (i <- 0 until numFiles) {
-      val table = spark.read.parquet(s"test$i.parquet")
+      val table = spark.read.parquet(s"zhaokuo03/test$i.parquet")
       val tableName = s"test$i"
       table.createTempView(tableName)
       w.write("```\n")

@@ -55,6 +55,8 @@ object Main {
   private def createSparkSession(conf: SparkConf = new SparkConf()): SparkSession = SparkSession
     .builder()
     .config(conf)
+    .master("local[*]")
+    .config("spark.sql.warehouse.dir", "file:///opt/meituan/zhaokuo03/dev/spark-warehouse")
     .getOrCreate()
 
   def main(args: Array[String]): Unit = {

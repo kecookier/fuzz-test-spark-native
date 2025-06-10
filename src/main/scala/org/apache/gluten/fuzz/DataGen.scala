@@ -40,7 +40,7 @@ object DataGen {
       generateRandomParquetFile(
         r,
         spark,
-        s"test$i.parquet",
+        s"zhaokuo03/test$i.parquet",
         numRows,
         numColumns,
         generateNegativeZero)
