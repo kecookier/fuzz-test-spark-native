@@ -56,6 +56,8 @@ object Main {
     .builder()
     .config(conf)
     .master("local[*]")
+    .config("spark.eventLog.enabled", "false")
+    .config("spark.hadoop.fs.defaultFS", "file:///")
     .config("spark.sql.warehouse.dir", "file:///opt/meituan/zhaokuo03/dev/spark-warehouse")
     .getOrCreate()
 
