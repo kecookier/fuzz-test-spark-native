@@ -6,6 +6,7 @@ class GenerateFunctionArgTypes {
 
 }
 
+// 生成一个表， 每个字段是一个类型， 生成sql时，遍历一个类型
 class FunctionMeta(val name: String,
                    val argCount: Int,
                    val argTypes: Seq[String],
@@ -15,7 +16,9 @@ object GenerateFunctionArgTypes {
   val unaryArithmeticOps: Seq[String] = Seq("+", "-")
   val binaryArithmeticOps: Seq[String] = Seq("+", "-", "*", "/", "%", "&", "|", "^")
   val comparisonOps: Seq[String] = Seq("=", "==", "<=>", ">", ">=", "<", "<=")
-  val blacklist = unaryArithmeticOps ++ binaryArithmeticOps ++ comparisonOps
+  // from_csv 包含Struct类型的参数
+  // in 包含Seq Seq暂时不处理
+  val blacklist = unaryArithmeticOps ++ binaryArithmeticOps ++ comparisonOps ++ Seq("from_csv", "in", "when", "like")
 
   val simpleTypeValues: Seq[(DataType, Any)] = Seq(
     (DataTypes.BooleanType, true),
@@ -54,6 +57,7 @@ object GenerateFunctionArgTypes {
 //  val typeValues = simpleTypeValues ++ complexTypeValues
   val typeValues = simpleTypeValues
 
+  // TODO(zhaokuo03) ignore StructType，当前之后 from_csv 函数有这个参数
   def string2DataType(s: String): DataType = {
     s.toLowerCase match {
       case "boolean"    => DataTypes.BooleanType

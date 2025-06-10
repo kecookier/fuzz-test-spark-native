@@ -26,6 +26,8 @@ import java.io.{BufferedWriter, FileWriter}
 import scala.collection.mutable
 import scala.util.Random
 
+// 如何解决query合法性的问题？
+
 object QueryGen {
 
   def generateRandomQueries(
@@ -43,14 +45,15 @@ object QueryGen {
 
     for (_ <- 0 until numQueries) {
       val sql = r.nextInt().abs % 8 match {
-        case 0 => generateJoin(r, spark, numFiles)
-        case 1 => generateAggregate(r, spark, numFiles)
-        case 2 => generateScalar(r, spark, numFiles)
-        case 3 => generateCast(r, spark, numFiles)
-        case 4 => generateUnaryArithmetic(r, spark, numFiles)
-        case 5 => generateBinaryArithmetic(r, spark, numFiles)
-        case 6 => generateBinaryComparison(r, spark, numFiles)
-        case _ => generateConditional(r, spark, numFiles)
+        case _ => generateScalar(r, spark, numFiles)
+//        case 0 => generateJoin(r, spark, numFiles)
+//        case 1 => generateAggregate(r, spark, numFiles)
+//        case 2 => generateScalar(r, spark, numFiles)
+//        case 3 => generateCast(r, spark, numFiles)
+//        case 4 => generateUnaryArithmetic(r, spark, numFiles)
+//        case 5 => generateBinaryArithmetic(r, spark, numFiles)
+//        case 6 => generateBinaryComparison(r, spark, numFiles)
+//        case _ => generateConditional(r, spark, numFiles)
       }
       if (!uniqueQueries.contains(sql)) {
         uniqueQueries += sql

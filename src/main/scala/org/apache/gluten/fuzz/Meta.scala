@@ -24,6 +24,22 @@ import org.apache.spark.sql.types._
 
 object Meta {
 
+
+  // TODO(zhaokuo03) 扩展function到全部函数列表
+  /* 函数参数个数分布
+  $ awk -F":" '{print $2}' func_args|sort|uniq -c
+    28 -1
+    23 0
+   163 1
+   155 2
+    65 3
+    12 4
+     4 5
+     3 6
+     2 7
+     1 8
+   */
+
   val dataTypes: Seq[(DataType, Double)] = Seq(
     (DataTypes.BooleanType, 0.1),
     (DataTypes.ByteType, 0.2),
