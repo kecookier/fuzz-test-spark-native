@@ -1,8 +1,0 @@
-// 自动生成的函数元数据 - hash_funcs
-val functionMetas = Seq(
-  Function("crc32", 1),
-  Function("md5", 1),
-  Function("sha", 1),
-  Function("sha1", 1),
-  Function("sha2", 2)
-)

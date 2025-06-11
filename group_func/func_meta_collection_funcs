@@ -1,8 +1,0 @@
-// 自动生成的函数元数据 - collection_funcs
-val functionMetas = Seq(
-  FunctionWithSignature("cardinality", 2) => FunctionMeta(cardinality, 2, WrappedArray(Expression, boolean), collection_funcs),
-  Function("cardinality", 1),
-  Function("reverse", 1),
-  FunctionWithSignature("size", 2) => FunctionMeta(size, 2, WrappedArray(Expression, boolean), collection_funcs),
-  Function("size", 1)
-)

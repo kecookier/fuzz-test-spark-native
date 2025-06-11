@@ -1,9 +1,0 @@
-// 自动生成的函数元数据 - generator_funcs
-val functionMetas = Seq(
-  Function("explode", 1),
-  Function("explode_outer", 1),
-  Function("inline", 1),
-  Function("inline_outer", 1),
-  Function("posexplode", 1),
-  Function("posexplode_outer", 1)
-)

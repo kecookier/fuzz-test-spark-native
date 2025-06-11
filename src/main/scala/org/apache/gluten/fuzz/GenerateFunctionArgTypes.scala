@@ -136,7 +136,7 @@ object GenerateFunctionArgTypes {
             }
           }
           // 写入文件尾部
-          groupWriter.write(")\n")
+          groupWriter.write(")\n\n")
           println(s"成功写入 ${metaStrs.length} 个函数元数据到文件: $groupFilename")
       }
     }
