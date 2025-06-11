@@ -26,40 +26,36 @@ object SparkFunctionAnalyzer {
       .config("spark.sql.warehouse.dir", "file:///opt/meituan/zhaokuo03/dev/spark-warehouse")
       .getOrCreate()
 
-//    genValidSql()
     try {
       // gen func_args
 //      extractFuncMetaFile(spark);
-
-      //
 //      genTestSql()
-
-      //
 //      genValidSql()
-
-
-      val functions = getBuiltinFunctions(spark)
-      // 创建输出文件
-      val writer = new PrintWriter(new File("35_func_group"))
-      try {
-        println(s"Spark SQL 内置函数总数: ${functions.size}")
-        functions.foreach { case (exprInfo, clazz) =>
-          val name = exprInfo.getName
-          val group = exprInfo.getGroup match {
-            case "" => "empty"
-            case x => x
-          }
-          writer.println(s"$name $group")
-        }
-        println(s"函数组信息已输出到文件: 35_func_group")
-      } finally {
-        writer.close()
-      }
+//      genSpark35FunctionGroup()
 //      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "func_meta")
-
-
     } finally {
       spark.stop()
+    }
+  }
+
+  // 生成spark 3.5 的函数组信息
+  def genSpark35FunctionGroup(spark:SparkSession): Unit = {
+    val functions = getBuiltinFunctions(spark)
+    // 创建输出文件
+    val writer = new PrintWriter(new File("35_func_group"))
+    try {
+      println(s"Spark SQL 内置函数总数: ${functions.size}")
+      functions.foreach { case (exprInfo, clazz) =>
+        val name = exprInfo.getName
+        val group = exprInfo.getGroup match {
+          case "" => "empty"
+          case x => x
+        }
+        writer.println(s"$name $group")
+      }
+      println(s"函数组信息已输出到文件: 35_func_group")
+    } finally {
+      writer.close()
     }
   }
 
