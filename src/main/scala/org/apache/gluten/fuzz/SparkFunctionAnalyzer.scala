@@ -32,7 +32,8 @@ object SparkFunctionAnalyzer {
 //      genValidSql()
 
       val functionMetas = genFunctionMeta()
-      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "auto_gen_func_meta")
+      functionMetas.foreach(x => println(s"${x.name} ${x.group}"))
+//      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "func_meta")
 
 
     } finally {
