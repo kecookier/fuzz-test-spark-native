@@ -10,32 +10,35 @@ import scala.io.Source
 
 object SparkFunctionAnalyzer {
 
-//  def main(args: Array[String]): Unit = {
-//    // 解析命令行参数
-////    val detail = args.contains("--detail")
-//
-//////     创建SparkSession
-//    val spark = SparkSession.builder()
-//      .appName("Spark Function Analyzer")
-//      .master("local[*]")
-//      .getOrCreate()
-//
-////    genValidSql()
-//    try {
-//      // gen func_args
-////      extractFuncMetaFile(spark);
-//
-//      //
-////      genTestSql()
-//
-//      //
+  def main(args: Array[String]): Unit = {
+    // 解析命令行参数
+//    val detail = args.contains("--detail")
+
+////     创建SparkSession
+    val spark = SparkSession.builder()
+      .appName("Spark Function Analyzer")
+      .master("local[*]")
+      .getOrCreate()
+
+//    genValidSql()
+    try {
+      // gen func_args
+//      extractFuncMetaFile(spark);
+
+      //
+//      genTestSql()
+
+      //
 //      genValidSql()
-//
-//
-//    } finally {
-//      spark.stop()
-//    }
-//  }
+
+      val functionMetas = genFunctionMeta()
+      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "auto_gen_func_meta")
+
+
+    } finally {
+      spark.stop()
+    }
+  }
 
   def extractFuncMetaFile(spark: SparkSession): Unit = {
     val outputFile = "func_args"

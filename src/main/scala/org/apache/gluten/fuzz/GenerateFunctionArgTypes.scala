@@ -93,6 +93,53 @@ object GenerateFunctionArgTypes {
     }
   }
 
+  def genFuncMetaString(func: FunctionMeta): String = {
+    val funcName = func.name
+    val argCount = func.argCount
+    val argTypes = func.argTypes
+    val group = func.group
+    // 如果 argTypes全部是Expression， 生成字符串 s"Function($funcName, $argCount)"
+    if (argTypes.forall(_ == "Expression")) {
+      s"Function($funcName, $argCount) => FunctionMeta($funcName, $argCount, $argTypes, $group)"
+    } else {
+      s"FunctionWithSignature($funcName, $argCount) => FunctionMeta($funcName, $argCount, $argTypes, $group)"
+    }
+  }
+
+  // 添加一个新方法，将函数元数据字符串写入文件
+  def writeFuncMetaToFile(funcs: Seq[FunctionMeta], filename: String): Unit = {
+    import java.io.{BufferedWriter, FileWriter}
+
+    val writer = new BufferedWriter(new FileWriter(filename))
+    try {
+      // 写入文件头部
+      writer.write("// 自动生成的函数元数据\n")
+      writer.write("val functionMetas = Seq(\n")
+
+      // 写入每个函数的元数据字符串
+      val validFuncs = funcs.filterNot(func =>
+        func.group == "agg_funcs" || func.group == "window_funcs" || func.argCount == -1)
+
+      val metaStrings = validFuncs.map(genFuncMetaString)
+
+      // 写入每一行，除了最后一行外都加逗号
+      metaStrings.zipWithIndex.foreach { case (metaStr, idx) =>
+        if (idx < metaStrings.length - 1) {
+          writer.write(s"  $metaStr,\n")
+        } else {
+          writer.write(s"  $metaStr\n")
+        }
+      }
+
+      // 写入文件尾部
+      writer.write(")\n")
+
+      println(s"成功写入 ${metaStrings.length} 个函数元数据到文件: $filename")
+    } finally {
+      writer.close()
+    }
+  }
+
 
   def sqlGen(func: FunctionMeta): Seq[(String, Seq[String])] = {
     val funcName = func.name
