@@ -63,6 +63,29 @@ object SparkFunctionAnalyzer {
     }
   }
 
+  def readFunctionGroups(filePath: String = "35_func_group"): Map[String, String] = {
+    try {
+      val source = Source.fromFile(filePath)
+      val result = source.getLines()
+        .map { line =>
+          val parts = line.trim.split("\\s+", 2)
+          if (parts.length == 2) {
+            parts(0) -> parts(1)
+          } else {
+            parts(0) -> ""
+          }
+        }
+        .toMap
+
+      source.close()
+      result
+    } catch {
+      case e: Exception =>
+        println(s"读取文件时出错: ${e.getMessage}")
+        Map.empty[String, String]
+    }
+  }
+
   def extractFuncMetaFile(spark: SparkSession): Unit = {
     val outputFile = "func_args"
     // 获取内置函数列表
@@ -139,10 +162,12 @@ object SparkFunctionAnalyzer {
 
   def analyzeFunctionParameters(expressionInfo: ExpressionInfo,  clazz: Class[_], writer: PrintWriter): Unit = {
     val name = expressionInfo.getName
-    val group = expressionInfo.getGroup match {
-      case "" => "unknown_group"
-      case x => x
-    }
+    val func_groups = readFunctionGroups()
+    val group = func_groups.getOrElse(name, "empty")
+//      expressionInfo.getGroup match {
+//      case "" => "unknown_group"
+//      case x => x
+//    }
     // 获取所有构造函数
     val constructors = clazz.getConstructors
 
