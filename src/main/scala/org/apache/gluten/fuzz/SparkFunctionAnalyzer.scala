@@ -29,7 +29,7 @@ object SparkFunctionAnalyzer {
 //    genValidSql()
     try {
       // gen func_args
-//      extractFuncMetaFile(spark);
+      extractFuncMetaFile(spark);
 
       //
 //      genTestSql()
