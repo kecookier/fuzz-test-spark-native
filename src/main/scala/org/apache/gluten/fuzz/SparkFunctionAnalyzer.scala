@@ -29,10 +29,11 @@ object SparkFunctionAnalyzer {
     try {
       // gen func_args
 //      extractFuncMetaFile(spark);
+        val functionMetas = genFunctionMeta()
 //      genTestSql()
 //      genValidSql()
 //      genSpark35FunctionGroup()
-//      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "func_meta")
+      GenerateFunctionArgTypes.splitFuncMetaByGroup(functionMetas, "group_func/func_meta")
     } finally {
       spark.stop()
     }

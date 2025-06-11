@@ -107,7 +107,7 @@ object GenerateFunctionArgTypes {
   }
 
   // 添加一个新方法，将函数元数据字符串写入文件
-  def writeFuncMetaToFile(funcs: Seq[FunctionMeta], filename: String): Unit = {
+  def splitFuncMetaByGroup(funcs: Seq[FunctionMeta], filename: String): Unit = {
     import java.io.{BufferedWriter, FileWriter}
 
     // 写入每个函数的元数据字符串
