@@ -39,13 +39,21 @@ object SparkFunctionAnalyzer {
 
 
       val functions = getBuiltinFunctions(spark)
-      functions.foreach { case (exprInfo, clazz) =>
-        val name = exprInfo.getName
-        val group = exprInfo.getGroup match {
-          case "" => "empty"
-          case x => x
+      // 创建输出文件
+      val writer = new PrintWriter(new File("35_func_group"))
+      try {
+        println(s"Spark SQL 内置函数总数: ${functions.size}")
+        functions.foreach { case (exprInfo, clazz) =>
+          val name = exprInfo.getName
+          val group = exprInfo.getGroup match {
+            case "" => "empty"
+            case x => x
+          }
+          writer.println(s"$name $group")
         }
-        println(s"$name $group")
+        println(s"函数组信息已输出到文件: 35_func_group")
+      } finally {
+        writer.close()
       }
 //      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "func_meta")
 
