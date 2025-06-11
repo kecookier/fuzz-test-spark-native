@@ -29,7 +29,7 @@ object SparkFunctionAnalyzer {
 //    genValidSql()
     try {
       // gen func_args
-      extractFuncMetaFile(spark);
+//      extractFuncMetaFile(spark);
 
       //
 //      genTestSql()
@@ -37,8 +37,16 @@ object SparkFunctionAnalyzer {
       //
 //      genValidSql()
 
-      val functionMetas = genFunctionMeta()
-      functionMetas.foreach(x => println(s"${x.name} ${x.group}"))
+
+      val functions = getBuiltinFunctions(spark)
+      functions.foreach { case (exprInfo, clazz) =>
+        val name = exprInfo.getName
+        val group = exprInfo.getGroup match {
+          case "" => "empty"
+          case x => x
+        }
+        println(s"$name $group")
+      }
 //      GenerateFunctionArgTypes.writeFuncMetaToFile(functionMetas, "func_meta")
 
 
