@@ -102,7 +102,7 @@ object GenerateFunctionArgTypes {
     if (argTypes.forall(_ == "Expression")) {
       (s"""Function("$funcName", $argCount)""", s"$group")
     } else {
-      (s"""FunctionWithSignature("$funcName", $argCount) => FunctionMeta($funcName, $argCount, $argTypes, $group)""", s"$group")
+      (s"""// FunctionWithSignature("$funcName", $argCount) => FunctionMeta($funcName, $argCount, $argTypes, $group)""", s"$group")
     }
   }
 
@@ -111,39 +111,40 @@ object GenerateFunctionArgTypes {
     import java.io.{BufferedWriter, FileWriter}
 
     // 写入每个函数的元数据字符串
-    val validFuncs = funcs.filterNot(func =>
-      func.group == "agg_funcs" || func.group == "window_funcs" || func.argCount == -1)
-    val metaStrings = validFuncs.map(genFuncMetaString)
+//    val validFuncs = funcs.filterNot(func =>
+//      func.group == "agg_funcs" || func.group == "window_funcs" || func.argCount == -1)
+    val validFuncs = funcs
     // metaStrings 按照 group 分组，每个分组写入一个文件
-    val groupedMetaStrings = metaStrings.groupBy(_._2)
-    // 按组写入不同文件
-    groupedMetaStrings.foreach { case (group, metaStrs) =>
-      val groupFilename = s"${filename}_$group"
-      val groupWriter = new BufferedWriter(new FileWriter(groupFilename))
-      try {
-        // 写入文件头部
-        groupWriter.write(s"// 自动生成的函数元数据 - $group\n")
-        groupWriter.write("val functionMetas = Seq(\n")
+    val groupFilename = filename
+    val groupWriter = new BufferedWriter(new FileWriter(groupFilename))
 
-        // 写入每一行，除了最后一行外都加逗号
-        metaStrs.zipWithIndex.foreach { case ((metaStr, _), idx) =>
-          if (idx < metaStrs.length - 1) {
-            groupWriter.write(s"  $metaStr,\n")
-          } else {
-            groupWriter.write(s"  $metaStr\n")
+    try {
+      val metaStrings = validFuncs.map(genFuncMetaString)
+      val groupedMetaStrings = metaStrings.groupBy(_._2)
+      groupedMetaStrings.foreach {
+        case (group, metaStrs) =>
+          // 写入文件头部
+          groupWriter.write(s"// 自动生成的函数元数据 - $group\n")
+          groupWriter.write(s"val ${group}_Funcs = Seq(\n")
+
+          // 写入每一行，除了最后一行外都加逗号
+          metaStrs.zipWithIndex.foreach { case ((metaStr, _), idx) =>
+            if (idx < metaStrs.length - 1) {
+              groupWriter.write(s"  $metaStr,\n")
+            } else {
+              groupWriter.write(s"  $metaStr\n")
+            }
           }
-        }
-
-        // 写入文件尾部
-        groupWriter.write(")\n")
-
-        println(s"成功写入 ${metaStrs.length} 个函数元数据到文件: $groupFilename")
-      } finally {
-        groupWriter.close()
+          // 写入文件尾部
+          groupWriter.write(")\n")
+          println(s"成功写入 ${metaStrs.length} 个函数元数据到文件: $groupFilename")
       }
     }
+    finally
+    {
+      groupWriter.close()
+    }
   }
-
 
   def sqlGen(func: FunctionMeta): Seq[(String, Seq[String])] = {
     val funcName = func.name

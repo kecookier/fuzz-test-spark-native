@@ -33,7 +33,7 @@ object SparkFunctionAnalyzer {
 //      genTestSql()
 //      genValidSql()
 //      genSpark35FunctionGroup()
-      GenerateFunctionArgTypes.splitFuncMetaByGroup(functionMetas, "group_func/func_meta")
+      GenerateFunctionArgTypes.splitFuncMetaByGroup(functionMetas, "group_func_meta")
     } finally {
       spark.stop()
     }
