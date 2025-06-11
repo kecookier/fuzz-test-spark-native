@@ -1,0 +1,19 @@
+// 自动生成的函数元数据 - json_funcs
+val functionMetas = Seq(
+  Function("from_json", 2),
+  FunctionWithSignature("from_json", 3) => FunctionMeta(from_json, 3, WrappedArray(Expression, Expression, Map<String, String>), json_funcs),
+  Function("from_json", 3),
+  FunctionWithSignature("from_json", 4) => FunctionMeta(from_json, 4, WrappedArray(DataType, Map<String, String>, Expression, Option), json_funcs),
+  FunctionWithSignature("from_json_legacy", 4) => FunctionMeta(from_json_legacy, 4, WrappedArray(DataType, Map<String, String>, Expression, Option), json_funcs),
+  FunctionWithSignature("from_json_legacy", 3) => FunctionMeta(from_json_legacy, 3, WrappedArray(DataType, Map<String, String>, Expression), json_funcs),
+  Function("from_json_legacy", 2),
+  Function("from_json_legacy", 3),
+  Function("get_json_object", 2),
+  Function("schema_of_json", 1),
+  FunctionWithSignature("schema_of_json", 2) => FunctionMeta(schema_of_json, 2, WrappedArray(Expression, Map<String, String>), json_funcs),
+  Function("schema_of_json", 2),
+  Function("to_json", 1),
+  FunctionWithSignature("to_json", 2) => FunctionMeta(to_json, 2, WrappedArray(Map<String, String>, Expression), json_funcs),
+  FunctionWithSignature("to_json", 3) => FunctionMeta(to_json, 3, WrappedArray(Map<String, String>, Expression, Option), json_funcs),
+  Function("to_json", 2)
+)

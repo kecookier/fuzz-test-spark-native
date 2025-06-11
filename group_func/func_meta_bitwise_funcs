@@ -1,0 +1,10 @@
+// 自动生成的函数元数据 - bitwise_funcs
+val functionMetas = Seq(
+  Function("&", 2),
+  Function("^", 2),
+  Function("bit_count", 1),
+  Function("shiftright", 2),
+  Function("shiftrightunsigned", 2),
+  Function("|", 2),
+  Function("~", 1)
+)

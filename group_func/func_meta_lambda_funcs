@@ -1,0 +1,17 @@
+// 自动生成的函数元数据 - lambda_funcs
+val functionMetas = Seq(
+  Function("aggregate", 4),
+  Function("aggregate", 3),
+  Function("array_sort", 2),
+  Function("array_sort", 1),
+  Function("exists", 2),
+  FunctionWithSignature("exists", 3) => FunctionMeta(exists, 3, WrappedArray(Expression, Expression, boolean), lambda_funcs),
+  Function("filter", 2),
+  Function("forall", 2),
+  Function("map_filter", 2),
+  Function("map_zip_with", 3),
+  Function("transform", 2),
+  Function("transform_keys", 2),
+  Function("transform_values", 2),
+  Function("zip_with", 3)
+)

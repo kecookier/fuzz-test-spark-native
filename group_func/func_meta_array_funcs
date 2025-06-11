@@ -1,0 +1,26 @@
+// 自动生成的函数元数据 - array_funcs
+val functionMetas = Seq(
+  Function("array_contains", 2),
+  Function("array_distinct", 1),
+  Function("array_except", 2),
+  Function("array_intersect", 2),
+  FunctionWithSignature("array_join", 3) => FunctionMeta(array_join, 3, WrappedArray(Expression, Expression, Option), array_funcs),
+  Function("array_join", 3),
+  Function("array_join", 2),
+  Function("array_max", 1),
+  Function("array_min", 1),
+  Function("array_position", 2),
+  Function("array_remove", 2),
+  Function("array_repeat", 2),
+  Function("array_union", 2),
+  Function("arrays_overlap", 2),
+  Function("flatten", 1),
+  Function("sequence", 3),
+  Function("sequence", 2),
+  FunctionWithSignature("sequence", 4) => FunctionMeta(sequence, 4, WrappedArray(Expression, Expression, Option, Option), array_funcs),
+  FunctionWithSignature("shuffle", 2) => FunctionMeta(shuffle, 2, WrappedArray(Expression, Option), array_funcs),
+  Function("shuffle", 1),
+  Function("slice", 3),
+  Function("sort_array", 2),
+  Function("sort_array", 1)
+)

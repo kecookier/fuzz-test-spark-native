@@ -1,0 +1,12 @@
+// 自动生成的函数元数据 - xml_funcs
+val functionMetas = Seq(
+  Function("xpath", 2),
+  Function("xpath_boolean", 2),
+  Function("xpath_double", 2),
+  Function("xpath_float", 2),
+  Function("xpath_int", 2),
+  Function("xpath_long", 2),
+  Function("xpath_number", 2),
+  Function("xpath_short", 2),
+  Function("xpath_string", 2)
+)

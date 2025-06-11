@@ -1,0 +1,14 @@
+// 自动生成的函数元数据 - csv_funcs
+val functionMetas = Seq(
+  FunctionWithSignature("from_csv", 3) => FunctionMeta(from_csv, 3, WrappedArray(Expression, Expression, Map<String, String>), csv_funcs),
+  Function("from_csv", 3),
+  Function("from_csv", 2),
+  FunctionWithSignature("from_csv", 4) => FunctionMeta(from_csv, 4, WrappedArray(Struct<?>, Map<String, String>, Expression, Option), csv_funcs),
+  FunctionWithSignature("schema_of_csv", 2) => FunctionMeta(schema_of_csv, 2, WrappedArray(Expression, Map<String, String>), csv_funcs),
+  Function("schema_of_csv", 2),
+  Function("schema_of_csv", 1),
+  Function("to_csv", 2),
+  FunctionWithSignature("to_csv", 2) => FunctionMeta(to_csv, 2, WrappedArray(Map<String, String>, Expression), csv_funcs),
+  Function("to_csv", 1),
+  FunctionWithSignature("to_csv", 3) => FunctionMeta(to_csv, 3, WrappedArray(Map<String, String>, Expression, Option), csv_funcs)
+)

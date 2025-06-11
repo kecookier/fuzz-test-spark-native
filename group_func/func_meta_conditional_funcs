@@ -1,0 +1,10 @@
+// 自动生成的函数元数据 - conditional_funcs
+val functionMetas = Seq(
+  Function("if", 3),
+  Function("ifnull", 2),
+  Function("nanvl", 2),
+  Function("nullif", 2),
+  Function("nvl", 2),
+  Function("nvl2", 3),
+  FunctionWithSignature("when", 2) => FunctionMeta(when, 2, WrappedArray(Seq, Option), conditional_funcs)
+)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SPARK_HOME=/opt/meituan/zhaokuo03/dev/spark-3.5
+export SPARK_HOME=/opt/meituan/zhaokuo03/dev/spark-3.0
 SPARK_MASTER=local
 $SPARK_HOME/bin/spark-submit \
     --master $SPARK_MASTER \
