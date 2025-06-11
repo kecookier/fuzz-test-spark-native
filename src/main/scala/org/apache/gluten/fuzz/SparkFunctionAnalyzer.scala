@@ -17,7 +17,11 @@ object SparkFunctionAnalyzer {
 ////     创建SparkSession
     val spark = SparkSession.builder()
       .appName("Spark Function Analyzer")
+      .config(new SparkConf())
       .master("local[*]")
+      .config("spark.eventLog.enabled", "false")
+      .config("spark.hadoop.fs.defaultFS", "file:///")
+      .config("spark.sql.warehouse.dir", "file:///opt/meituan/zhaokuo03/dev/spark-warehouse")
       .getOrCreate()
 
 //    genValidSql()
